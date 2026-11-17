@@ -12,20 +12,17 @@ I'm a self-taught data analyst with a background in biochemistry, now building i
 🏥 Analyze healthcare datasets to improve operational and clinical insights
 
 
-##🛠️ Tools & Skills
+## 🛠️ Tools & Skills
 Power BI: Dashboards, DAX measures, calculated tables
 SQL: Querying, joins, data extraction
 Excel: Data modeling, cleanup, analysis
 Data Cleaning: Raw data to model-ready datasets
 Business Questions: Framing the problem before the build
 
-##🚀 Featured Projects
+## 🚀 Featured Projects
 🧠 Brain Health Risk Analysis: patterns linked to brain health risk to support earlier screening decisions
-
 🩺 Ulcer Health Risk Analysis: lifestyle and clinical indicators behind ulcer risk, with a dashboard to flag higher-risk groups
-
 🚬 Smoking & Health Risk Analysis: how smoking habits relate to health outcomes, with visuals for non-technical audiences
-
 💰 Medical Insurance Cost Analysis: demographic and lifestyle drivers of insurance cost in Power BI
 
  ## 🎓 Education & Certification
