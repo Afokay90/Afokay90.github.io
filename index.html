@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kehinde — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1EA;
+    --bg-panel:#FFFFFF;
+    --ink:#16211D;
+    --ink-muted:#5B6B62;
+    --accent:#1F6F64;
+    --accent-2:#B23A2E;
+    --line:rgba(22,33,29,0.15);
+    --grid-line:rgba(22,33,29,0.07);
+    --radius:4px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#11170F;
+      --bg-panel:#1A2119;
+      --ink:#ECEFE7;
+      --ink-muted:#9FAD9F;
+      --accent:#5AD9C4;
+      --accent-2:#E2897C;
+      --line:rgba(236,239,231,0.16);
+      --grid-line:rgba(236,239,231,0.08);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#11170F;
+    --bg-panel:#1A2119;
+    --ink:#ECEFE7;
+    --ink-muted:#9FAD9F;
+    --accent:#5AD9C4;
+    --accent-2:#E2897C;
+    --line:rgba(236,239,231,0.16);
+    --grid-line:rgba(236,239,231,0.08);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Public Sans", -apple-system, "Segoe UI", sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Spectral", Georgia, "Times New Roman", serif;
+    font-weight:500;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .rule{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:0;
+  }
+
+  /* NAV */
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:28px;
+    padding-bottom:28px;
+  }
+  .brand{
+    font-family:"Spectral", serif;
+    font-size:19px;
+    letter-spacing:0.01em;
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    color:var(--ink-muted);
+  }
+  .navlinks a{text-decoration:none;}
+  .navlinks a:hover{color:var(--accent);}
+  @media (max-width:640px){
+    .navlinks{display:none;}
+  }
+
+  /* HERO */
+  .hero-section{
+    position:relative;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:32px 32px;
+    padding-top:56px;
+    padding-bottom:64px;
+  }
+  .hero-inner{
+    display:flex;
+    align-items:center;
+    gap:56px;
+  }
+  .hero-text{flex:1.2;}
+  .hero-chart{flex:1; min-width:260px;}
+  .role-label{
+    font-size:14px;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  h1.name{
+    font-size:clamp(38px, 5.4vw, 56px);
+    line-height:1.08;
+    margin-bottom:18px;
+  }
+  .tagline{
+    font-size:17px;
+    color:var(--ink-muted);
+    max-width:46ch;
+    margin-bottom:30px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:var(--radius);
+    font-size:14.5px;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform 120ms ease, background 120ms ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:var(--bg-panel);
+  }
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+  .chart-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 18px 14px;
+  }
+  .chart-caption{
+    font-size:12.5px;
+    color:var(--ink-muted);
+    margin-top:10px;
+  }
+
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .hero-text > *{
+    animation:riseIn 620ms ease both;
+  }
+  .hero-text > *:nth-child(2){animation-delay:60ms;}
+  .hero-text > *:nth-child(3){animation-delay:120ms;}
+  .hero-text > *:nth-child(4){animation-delay:180ms;}
+  @media (prefers-reduced-motion: reduce){
+    .hero-text > *{animation:none;}
+  }
+  @media (max-width:760px){
+    .hero-inner{flex-direction:column; align-items:flex-start;}
+  }
+
+  /* STATS */
+  .stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{
+    flex:1 1 130px;
+    padding:22px 24px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-num{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:26px;
+    color:var(--accent);
+  }
+  .stat-label{
+    font-size:12.5px;
+    color:var(--ink-muted);
+    margin-top:4px;
+  }
+
+  /* SECTION generic */
+  section{padding:64px 0;}
+  .section-title{
+    font-size:26px;
+    margin-bottom:8px;
+  }
+  .section-kicker{
+    font-size:14px;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .lede{
+    color:var(--ink-muted);
+    max-width:60ch;
+    margin-bottom:36px;
+  }
+
+  /* ABOUT */
+  .about-body{max-width:64ch; color:var(--ink-muted);}
+  .about-body strong{color:var(--ink); font-weight:600;}
+
+  /* SKILLS */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:640px){
+    .skills-grid{grid-template-columns:1fr;}
+  }
+  .skill-group h3{font-size:16px; margin-bottom:14px;}
+  .skill-list{list-style:none; margin:0; padding:0;}
+  .skill-list li{
+    padding:10px 0;
+    border-top:1px solid var(--line);
+    font-size:15px;
+    display:flex;
+    justify-content:space-between;
+    color:var(--ink-muted);
+  }
+  .skill-list li span:first-child{color:var(--ink);}
+  .skill-list li:last-child{border-bottom:1px solid var(--line);}
+
+  /* PROJECTS */
+  .project-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:680px){
+    .project-grid{grid-template-columns:1fr;}
+  }
+  .project-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  .project-tag{
+    font-size:12px;
+    color:var(--accent-2);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .project-card h3{font-size:19px; margin-bottom:10px;}
+  .project-card p{
+    color:var(--ink-muted);
+    font-size:14.5px;
+    margin:0;
+  }
+
+  /* JOURNEY */
+  .timeline{border-left:1px solid var(--line); padding-left:28px;}
+  .tl-item{position:relative; padding-bottom:32px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-33px;
+    top:5px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+  .tl-date{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .tl-item h3{font-size:17px; margin-bottom:4px;}
+  .tl-item p{color:var(--ink-muted); font-size:14.5px; margin:0; max-width:56ch;}
+
+  /* CERTIFICATIONS */
+  .cert-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .cert-card h3{font-size:16.5px; margin-bottom:4px;}
+  .cert-card p{margin:0; color:var(--ink-muted); font-size:14px;}
+  .cert-badge{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    color:var(--accent-2);
+    border:1px solid var(--accent-2);
+    padding:5px 10px;
+    border-radius:20px;
+  }
+
+  /* CONTACT / FOOTER */
+  footer{
+    background:var(--bg-panel);
+    border-top:1px solid var(--line);
+    padding:56px 0 32px;
+  }
+  .contact-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:44px;
+  }
+  .contact-links{display:flex; gap:22px; flex-wrap:wrap;}
+  .contact-links a{
+    font-size:14.5px;
+    text-decoration:none;
+    color:var(--ink-muted);
+    border-bottom:1px solid transparent;
+  }
+  .contact-links a:hover{color:var(--accent); border-color:var(--accent);}
+  .fine-print{
+    font-size:12.5px;
+    color:var(--ink-muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .proj-link{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;}
+</style>
+</head>
+<body>
+
+<nav class="wrap">
+  <div class="brand">Kehinde</div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero-section">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <div class="role-label">Data Analyst — Healthcare &amp; Clinical Insights</div>
+      <h1 class="name">I turn clinical and health datasets into decisions people can act on.</h1>
+      <p class="tagline">Trained in biochemistry, now working in Excel, SQL and Power BI to model health risk, spot patterns in patient and lifestyle data, and build dashboards that hold up under real questions.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-chart">
+      <div class="chart-card">
+        <svg viewBox="0 0 320 160" width="100%" height="auto" role="img" aria-label="Sample risk score trend line">
+          <line x1="0" y1="40" x2="320" y2="40" stroke="var(--grid-line)" stroke-width="1"/>
+          <line x1="0" y1="80" x2="320" y2="80" stroke="var(--grid-line)" stroke-width="1"/>
+          <line x1="0" y1="120" x2="320" y2="120" stroke="var(--grid-line)" stroke-width="1"/>
+          <polyline points="0,110 40,95 80,100 120,60 160,68 200,40 240,50 280,22 320,30"
+            fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="0,130 40,128 80,132 120,120 160,124 200,118 240,121 280,112 320,116"
+            fill="none" stroke="var(--accent-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+          <circle cx="320" cy="30" r="4" fill="var(--accent)"/>
+        </svg>
+        <div class="chart-caption">Sample output — risk score vs. baseline, from a dashboard build</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats wrap" style="max-width:920px;">
+  <div class="stat"><div class="stat-num">04</div><div class="stat-label">Practical projects</div></div>
+  <div class="stat"><div class="stat-num">03</div><div class="stat-label">Core tools</div></div>
+  <div class="stat"><div class="stat-num">01</div><div class="stat-label">Certification</div></div>
+  <div class="stat"><div class="stat-num">2022</div><div class="stat-label">B.Sc. Biochemistry</div></div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-kicker">About</div>
+    <h2 class="section-title">From the lab bench to the dashboard</h2>
+    <p class="about-body">I studied <strong>Biochemistry at Olabisi Onabanjo University</strong>, which is where I first got comfortable reading data critically — lab results, trends, and the questions behind them. That habit carried straight into analytics: today I am a <strong>self-taught data analyst</strong>, building dashboards and DAX measures on clinical and medical datasets, and turning open-ended business questions into numbers people can act on.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-kicker">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <p class="lede">A small, deliberate toolkit — used the same way on every project, from cleaning raw exports to shipping a dashboard someone will actually open again.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <ul class="skill-list">
+          <li><span>Power BI</span><span>Dashboards, DAX</span></li>
+          <li><span>SQL</span><span>Querying, joins</span></li>
+          <li><span>Excel</span><span>Modeling, cleanup</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Techniques</h3>
+        <ul class="skill-list">
+          <li><span>Calculated tables</span><span>DAX measures</span></li>
+          <li><span>Data cleaning</span><span>Raw to model-ready</span></li>
+          <li><span>Framing business questions</span><span>Before the build</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-kicker">Projects</div>
+    <h2 class="section-title">Case studies</h2>
+    <p class="lede">Each one starts from a real business question, not just a dataset — full write-ups with methodology and recommendations live in the repo.</p>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-tag">Health risk modeling</div>
+        <h3>Brain health risk analysis</h3>
+        <p>Explored factors linked to brain health risk in a clinical dataset, surfacing patterns to support earlier, better-informed screening decisions.</p>
+        <a class="proj-link" href="https://github.com/Afokay90/Brain-Health-Risk-Analysis" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Health risk modeling</div>
+        <h3>Ulcer risk analysis</h3>
+        <p>Analyzed lifestyle and clinical indicators tied to ulcer risk, building a dashboard to help flag higher-risk groups.</p>
+        <a class="proj-link" href="https://github.com/Afokay90/Ulcer-Health-Risk-Analysis" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Health risk modeling</div>
+        <h3>Smoking &amp; health risk</h3>
+        <p>Quantified how smoking habits relate to broader health outcomes across the dataset, with visuals built for a non-technical audience.</p>
+        <a class="proj-link" href="https://github.com/Afokay90/Smoking-Health-Risk-Analysis" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Cost analysis</div>
+        <h3>Medical insurance cost analysis</h3>
+        <p>Modeled how demographic and lifestyle factors drive medical insurance costs, with a Power BI dashboard for exploring cost drivers.</p>
+        <a class="proj-link" href="https://github.com/Afokay90/Medical-Insurance-Analysis" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-kicker">Journey</div>
+    <h2 class="section-title">How I got here</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2022</div>
+        <h3>B.Sc. Biochemistry</h3>
+        <p>Olabisi Onabanjo University — where an interest in reading data critically first started.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Coursera</div>
+        <h3>Google Data Analytics Certificate</h3>
+        <p>Formal grounding in the analytics process, from cleaning to visualization.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Self-taught</div>
+        <h3>Excel, SQL and Power BI</h3>
+        <p>Teaching myself to build Power BI dashboards, DAX measures and calculated tables on clinical and medical datasets.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Now</div>
+        <h3>Building this portfolio</h3>
+        <p>Packaging four independent projects into public, documented case studies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker">Certifications</div>
+    <h2 class="section-title" style="margin-bottom:24px;">Credentials</h2>
+    <div class="cert-card">
+      <div>
+        <h3>Google Data Analytics Certificate</h3>
+        <p>Coursera</p>
+      </div>
+      <div class="cert-badge">Verified</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div>
+        <div class="section-kicker">Contact</div>
+        <h2 class="section-title">Let's connect</h2>
+      </div>
+      <div class="contact-links">
+        <a href="https://github.com/Afokay90" target="_blank" rel="noopener">GitHub profile</a>
+        <a href="mailto:afokay90@gmail.com">afokay90@gmail.com</a>
+        <a href="tel:+2347013927445">0701 392 7445</a>
+      </div>
+    </div>
+    <div class="fine-print">
+      <span>Kehinde — Data Analyst</span>
+      <span>Lagos, Nigeria</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
